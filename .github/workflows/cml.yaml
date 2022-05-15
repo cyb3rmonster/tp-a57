@@ -1,0 +1,12 @@
+name: a57-tp-action
+on: [push]
+jobs:
+  train:
+    runs-on: [self-hosted, cml]
+    steps:
+      - uses: actions/checkout@v2
+      - name: cml_run
+        run: |
+          pip install -r requirements.txt
+          python train.py
+          cml send-comment report.md
