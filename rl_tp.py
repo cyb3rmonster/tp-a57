@@ -56,8 +56,8 @@ if __name__ == "__main__":
     alpha = 0.67#à changer
     l1_ratio = 0.3#à changer
 #Note de Zakaria
-    mlflow.set_experiment(experiment_name="experiment2")
-    mlflow.set_tracking_uri("http://127.0.0.1:5000") 
+    mlflow.set_tracking_uri("http://192.168.77.3:5000") 
+    mlflow.set_experiment("/experiment2")
  
     with mlflow.start_run():
         lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=42)

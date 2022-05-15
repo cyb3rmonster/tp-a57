@@ -10,9 +10,7 @@ jobs:
           pip install -r requirements.txt 
       - name: Training the model
         run: |
-          mlflow ui &
           python rl_tp.py
-          kill $(jobs -p)
       - name: Sending report
         run: |
           cml send-comment report.md
