@@ -57,7 +57,7 @@ if __name__ == "__main__":
     l1_ratio = 0.3#à changer
 #Note de Zakaria
     mlflow.set_experiment(experiment_name="experiment2")
-    mlflow.set_tracking_uri("http://:5000") 
+    mlflow.set_tracking_uri("http://127.0.0.1:5000") 
  
     with mlflow.start_run():
         lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=42)
@@ -66,11 +66,11 @@ if __name__ == "__main__":
         predicted_qualities = lr.predict(test_x)
  
         (rmse, mae, r2) = eval_metrics(test_y, predicted_qualities)
- 
-        print("Elasticnet model (alpha=%f, l1_ratio=%f):" % (alpha, l1_ratio))
-        print("  RMSE: %s" % rmse)
-        print("  MAE: %s" % mae)
-        print("  R2: %s" % r2)
+        with open('report.md', 'w') as report:
+            report.write("# Elasticnet model (alpha=%f, l1_ratio=%f):\n" % (alpha, l1_ratio))
+            report.write("-  RMSE: %s\n" % rmse)
+            report.write("-  MAE: %s\n" % mae)
+            report.write("-  R2: %s" % r2)
  
         mlflow.log_param("alpha", alpha)
         mlflow.log_param("l1_ratio", l1_ratio)
@@ -78,8 +78,8 @@ if __name__ == "__main__":
         mlflow.log_metric("r2", r2)
         mlflow.log_metric("mae", mae)
  
-        mlflow.sklearn.log_model(lr, "model")
+        #mlflow.sklearn.log_model(lr, "model")
     
         #Sauvegarder le modele
         import pickle #une autre strategie
-        pickle.dump(lr,open("c:\\tmp\\server_dev\\lr.dat","wb"))
+        pickle.dump(lr,open("model.dat","wb"))
