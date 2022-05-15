@@ -5,8 +5,12 @@ jobs:
     runs-on: [self-hosted, cml]
     steps:
       - uses: actions/checkout@v2
-      - name: cml_run
+      - name: Setting up the environment
         run: |
-          pip install -r requirements.txt
-          python train.py
+          pip install -r requirements.txt 
+      - name: Training the model
+        run: |
+          python rl_tp.py
+      - name: Sending report
+        run: |
           cml send-comment report.md
