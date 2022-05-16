@@ -25,6 +25,6 @@ jobs:
           dvc push
       - name: Sending report
         run: |
-          echo "model.dat.dvc" >> report.md
+          echo 'model.dat.dvc' >> report.md
           cat model.dat.dvc >> report.md
           cml send-comment report.md
