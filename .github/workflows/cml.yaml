@@ -11,7 +11,7 @@ jobs:
       - name: Setting up DVC
         run: |
           dvc init
-          dvc remote add -d tp-a57-dvc s3://tp-a57/model/
+          dvc remote add -d tp-a57-dvc s3://tp-a57/DVC/
           dvc remote modify tp-a57-dvc endpointurl https://minio.cyber.monster:9000
           dvc remote modify tp-a57-dvc access_key_id tp-hafed
           dvc remote modify tp-a57-dvc secret_access_key strong-password
