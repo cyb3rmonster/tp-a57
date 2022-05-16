@@ -38,6 +38,7 @@ if __name__ == "__main__":
         'http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv'
     try:
         data = pd.read_csv(csv_url, sep=';')
+        data.to_csv('data.csv', index=False)
     except Exception as e:
         logger.exception(
             "Unable to download training & test CSV, check your internet connection. Error: %s", e)
