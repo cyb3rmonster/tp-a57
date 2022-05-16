@@ -11,6 +11,8 @@ jobs:
       - name: Training the model
         run: |
           python rl_tp.py
+          date > date.txt
+          cml pr --squash date.txt
       - name: Sending report
         run: |
           cml send-comment report.md
