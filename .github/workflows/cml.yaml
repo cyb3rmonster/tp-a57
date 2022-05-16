@@ -22,6 +22,7 @@ jobs:
       - name: Pushing new model to DVC
         run: |
           dvc add model.dat
+          dvc push
       - name: Sending report
         run: |
           cml send-comment report.md
