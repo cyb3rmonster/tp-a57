@@ -4,3 +4,4 @@ mlruns/
 report.md
 model.dat
 cml.sh
+data.csv
