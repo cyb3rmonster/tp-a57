@@ -19,6 +19,9 @@ jobs:
       - name: Training the model
         run: |
           python rl_tp.py
+      - name: Pushing new training data to DVC
+        run: |
+          dvc add data.csv
       - name: Pushing new model to DVC
         run: |
           dvc add model.dat
@@ -28,4 +31,7 @@ jobs:
           echo >> report.md
           echo '## model.dat.dvc' >> report.md
           cat model.dat.dvc >> report.md
+          echo >> report.md
+          echo '## data.csv.dvc' >> report.md
+          cat data.csv.dvc >> report.md
           cml send-comment report.md
