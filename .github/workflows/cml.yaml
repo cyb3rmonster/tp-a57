@@ -11,8 +11,6 @@ jobs:
       - name: Training the model
         run: |
           python rl_tp.py
-          date > date.txt
-          cml pr --auto-merge date.txt
       - name: Sending report
         run: |
           cml send-comment report.md
