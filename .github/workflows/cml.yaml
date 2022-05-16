@@ -7,10 +7,23 @@ jobs:
       - uses: actions/checkout@v2
       - name: Setting up the environment
         run: |
-          pip install -r requirements.txt 
+          pip install -r requirements.txt
+      - name: Setting up DVC
+        run: |
+          dvc init
+          dvc remote add -d tp-a57-dvc s3://tp-a57/model/
+          dvc remote modify tp-a57-dvc endpointurl https://minio.cyber.monster:9000
+          dvc remote modify tp-a57-dvc access_key_id tp-hafed
+          dvc remote modify tp-a57-dvc secret_access_key strong-password
+          dvc pull
       - name: Training the model
         run: |
           python rl_tp.py
+      - name: Pushing new model to DVC
+        run: |
+          dvc add model.dat
       - name: Sending report
         run: |
           cml send-comment report.md
+          echo "## model.dat.dvc" >> report.md
+          cat model.dat.dvc >> report.md
