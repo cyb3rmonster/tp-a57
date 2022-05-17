@@ -28,7 +28,7 @@ jobs:
           dvc push
       - name: Sending latest model to minio
         run: |
-          push_latest_model.py
+          python push_latest_model.py
       - name: Sending report
         run: |
           echo >> report.md
